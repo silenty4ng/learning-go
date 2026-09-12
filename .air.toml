@@ -1,0 +1,26 @@
+# iGoBlog 热重载配置（https://github.com/air-verse/air）
+# 使用：先安装 go install github.com/air-verse/air@latest，再在项目根目录执行 `air`
+root = "."
+tmp_dir = "tmp"
+
+[build]
+# 编译输出到 tmp 目录，避免污染项目根目录
+cmd = "go build -o ./tmp/server.exe ./cmd/server"
+bin = "./tmp/server.exe"
+# 只监听后端源码；前端 web/ 是静态文件无需重编译，刷新浏览器即生效
+include_ext = ["go"]
+include_dir = ["cmd", "internal"]
+exclude_dir = ["tmp", "web"]
+exclude_file = ["blog.db"]
+# 编译错误时延迟重试，避免保存瞬间频繁触发
+delay = 1000
+# 停止旧进程后再编译，触发优雅关停（ViewCounter 缓冲冲刷后退出）
+send_interrupt = true
+kill_delay = 500
+log = "build-errors.log"
+
+[log]
+time = true
+
+[misc]
+clean_on_exit = true

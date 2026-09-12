@@ -1,0 +1,12 @@
+# 本地数据库
+blog.db
+blog.db-shm
+blog.db-wal
+
+# 构建产物
+server.exe
+*.exe
+
+# Air 热重载临时目录与日志
+tmp/
+build-errors.log

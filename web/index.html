@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="iGoBlog — Go 语言实现的博客系统" />
+  <title>iGoBlog · 首页</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234F46E5'/%3E%3Ctext x='16' y='22' font-size='16' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'%3EGo%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=4" />
+  <link rel="stylesheet" href="/assets/css/front.css?v=4" />
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#/">iGo<span>Blog</span></a>
+
+      <nav class="site-nav" id="siteNav">
+        <a href="#/" data-nav="home">文章</a>
+        <a href="/admin">管理后台</a>
+      </nav>
+
+      <div class="site-header__actions" id="authArea"><!-- JS 渲染登录态 --></div>
+
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单">☰</button>
+    </div>
+  </header>
+
+  <!-- 主视图容器（hash 路由渲染区） -->
+  <main class="container site-main" id="app"></main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>iGoBlog · Go + Gin + SQLite 驱动 · 原生 ES Modules 前端</p>
+    </div>
+  </footer>
+
+  <!-- 登录 / 注册弹层 -->
+  <div class="modal-backdrop" id="authModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-label="登录或注册">
+      <div class="tabs" id="authTabs">
+        <button type="button" data-tab="login" class="active">登录</button>
+        <button type="button" data-tab="register">注册</button>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <div class="field">
+          <label for="loginUsername">用户名</label>
+          <input class="input" id="loginUsername" name="username" autocomplete="username" placeholder="3~32 位字母、数字、下划线或连字符" required />
+        </div>
+        <div class="field">
+          <label for="loginPassword">密码</label>
+          <input class="input" id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="6~64 位" required />
+        </div>
+        <p class="form-error" id="loginError"></p>
+        <button class="btn btn--block" type="submit">登录</button>
+      </form>
+
+      <p class="muted" id="regClosedNote" style="text-align:center;margin-bottom:14px" hidden>
+        🔒 本站已关闭新用户注册
+      </p>
+
+      <form id="registerForm" hidden novalidate>
+        <div class="field">
+          <label for="regUsername">用户名</label>
+          <input class="input" id="regUsername" name="username" autocomplete="username" placeholder="3~32 位字母、数字、下划线或连字符" required />
+        </div>
+        <div class="field">
+          <label for="regPassword">密码</label>
+          <input class="input" id="regPassword" name="password" type="password" autocomplete="new-password" placeholder="6~64 位" required />
+        </div>
+        <div class="field">
+          <label for="regPassword2">确认密码</label>
+          <input class="input" id="regPassword2" name="confirm" type="password" autocomplete="new-password" placeholder="再次输入密码" required />
+        </div>
+        <p class="form-error" id="regError"></p>
+        <button class="btn btn--block" type="submit">注册并登录</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 个人设置（修改昵称）弹层 -->
+  <div class="modal-backdrop" id="profileModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-label="个人设置">
+      <h3 class="modal__title">个人设置</h3>
+      <div class="field">
+        <label for="profileNickname">昵称（留空则展示用户名）</label>
+        <input class="input" id="profileNickname" maxlength="30" placeholder="30 字以内" />
+      </div>
+      <p class="form-error" id="profileError"></p>
+      <button class="btn btn--block" id="profileSave" type="button">保存</button>
+    </div>
+  </div>
+
+  <script type="module" src="/assets/js/front/main.js?v=4"></script>
+</body>
+</html>

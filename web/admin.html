@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iGoBlog · 管理后台</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234F46E5'/%3E%3Ctext x='16' y='22' font-size='16' font-family='sans-serif' font-weight='700' fill='white' text-anchor='middle'%3EGo%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="/assets/css/base.css?v=4" />
+  <link rel="stylesheet" href="/assets/css/admin.css?v=4" />
+</head>
+<body>
+  <div class="admin-layout">
+    <!-- 侧边栏 -->
+    <aside class="admin-sidebar" id="sidebar">
+      <a class="brand" href="/">iGo<span>Blog</span></a>
+      <nav class="admin-nav" id="adminNav">
+        <a href="#/posts" data-route="posts">📝 文章管理</a>
+        <a href="#/categories" data-route="categories">📂 分类管理</a>
+        <a href="#/tags" data-route="tags">🏷️ 标签管理</a>
+        <a href="#/comments" data-route="comments">💬 评论管理</a>
+        <a href="#/users" data-route="users">👥 用户管理</a>
+        <a href="#/settings" data-route="settings">⚙️ 站点设置</a>
+      </nav>
+      <div class="admin-sidebar__foot">
+        <a class="muted admin-back" href="/">← 返回前台</a>
+        <div id="adminUser"><!-- JS 渲染登录用户卡片 --></div>
+      </div>
+    </aside>
+    <div class="sidebar-mask" id="sidebarMask"></div>
+
+    <!-- 主内容 -->
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <button class="nav-toggle" id="adminNavToggle" aria-label="打开菜单">☰</button>
+        <h1 class="admin-title" id="adminTitle"></h1>
+      </header>
+      <div class="admin-content" id="app"></div>
+    </main>
+  </div>
+
+  <script type="module" src="/assets/js/admin/app.js?v=4"></script>
+</body>
+</html>
